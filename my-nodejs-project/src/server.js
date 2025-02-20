@@ -2,6 +2,7 @@ const express = require('express');
 const itemRoutes = require('./routes/item.routes');
 const productRoutes = require('./routes/product.routes');
 const { logRequest } = require('./middleware');
+const { validateRequest, authenticateToken } = require('./middleware/route.middleware');
 require('dotenv').config();
 
 const app = express();
@@ -9,9 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(logRequest);
 
-// Routes
-app.use('/api/items', itemRoutes);
-app.use('/api/products', productRoutes);
+// Routes with middleware
+app.use('/api/items', validateRequest, authenticateToken, itemRoutes);
+app.use('/api/products', validateRequest, authenticateToken, productRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

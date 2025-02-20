@@ -1,4 +1,8 @@
 /node_modules# Dependencies
 node_modules/
 package-lock.json
+my-nodejs-project/src/config/serviceAccountKey.json
+my-nodejs-project/.env
+my-nodejs-project/src/config/serviceAccountKey.json
+
 
